@@ -1,0 +1,40 @@
+<mat-card><form (submit)="createTransaction();" [formGroup]="controller" novalidate>
+  <mat-form-field>
+    <mat-select placeholder="Odaberite račun" (change)="this.getValuta()" [(ngModel)]="transaction.brojRacuna" formControlName="brojRacuna">
+      <mat-option *ngFor="let acc of this.accounts" [value]="acc.brojRacuna">
+        {{ acc.vrsta }} {{ acc.brojRacuna}} ({{acc.valuta}})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Vrsta transakcije" [(ngModel)]="transaction.vrsta" formControlName="vrsta">
+      <mat-option *ngFor="let type of this.types" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <span matPrefix>HR &nbsp;</span>
+    <input matInput [(ngModel)]="transaction.brojAutorizacije" maxlength="20" placeholder="IBAN" formControlName="brojAutorizacije">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="transaction.datum" name="datum" [matDatepicker]="picker" placeholder="Datum provedbe:" formControlName="datum">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="transaction.iznos" name ="iznos" placeholder="Iznos" formControlName="iznos">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!controller.valid">Potvrdi</button>
+  <br>
+  <br>
+  <mat-hint *ngIf="this.dataService.showSuccessMessage" style="color:forestgreen">Uspješna transakcija!</mat-hint>
+  <mat-hint *ngIf="this.dataService.showErrorMessage" style="color:orangered">Pogreška pri kreiranju transakcije!</mat-hint>
+  <br><br>
+</form>
+</mat-card>

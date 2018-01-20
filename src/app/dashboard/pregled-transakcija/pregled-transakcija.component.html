@@ -1,0 +1,34 @@
+<br><br>
+<mat-card>
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="vrsta">
+      <mat-header-cell *matHeaderCellDef> Vrsta </mat-header-cell>
+      <mat-cell *matCellDef="let t"> {{t.vrsta}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brojRacuna">
+      <mat-header-cell *matHeaderCellDef> Broj računa </mat-header-cell>
+      <mat-cell *matCellDef="let t"> {{t.brojRacuna}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="brojAutorizacije">
+      <mat-header-cell *matHeaderCellDef> IBAN transakcije </mat-header-cell>
+      <mat-cell *matCellDef="let t"> {{t.brojAutorizacije}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="iznos">
+      <mat-header-cell *matHeaderCellDef> Iznos </mat-header-cell>
+      <mat-cell *matCellDef="let t">{{t.iznos}} {{t.valuta}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="odobreno">
+      <mat-header-cell *matHeaderCellDef> Odobreno </mat-header-cell>
+      <mat-cell *matCellDef="let t"><mat-icon *ngIf="t.odobreno; else template">done</mat-icon><ng-template #template><mat-icon>remove</mat-icon></ng-template> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>

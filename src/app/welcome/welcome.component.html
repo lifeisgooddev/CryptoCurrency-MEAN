@@ -1,0 +1,68 @@
+<mat-grid-list cols="3" rowHeight="1:1.5">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>Tečajna lista kriptovaluta:</mat-card-header>
+      <mat-card-content>
+        <mat-list >
+          <mat-list-item *ngFor="let crypto of this.cryptoRate">
+            <h4>{{crypto?.name}} ({{crypto?.symbol}}) &nbsp; <span *ngIf="crypto?.percent_change_1h > 0;then plus else minus"></span> &nbsp;- &nbsp;{{crypto?.price_usd | number : '1.2-2'}} USD</h4>
+            <ng-template #minus><mat-icon class="red">trending_down</mat-icon>&nbsp; <span class="red">{{crypto?.percent_change_1h}}%</span></ng-template>
+            <ng-template #plus ><mat-icon class="green">trending_up</mat-icon>&nbsp; <span class="green">+{{crypto?.percent_change_1h}}%</span></ng-template>
+            <br>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card  [ngClass]="{'success': this.dataService.showSuccessMessage,'error':this.dataService.showErrorMessage, 'warning':this.dataService.showInvalidUserMessage}">
+    <mat-card-title-group>
+      <mat-card-title style="margin-left:25px;">
+        CryptoFlow
+      </mat-card-title>
+      <mat-card-subtitle style="margin-left:25px;">
+        Prijava:
+      </mat-card-subtitle>
+      <br>
+    </mat-card-title-group>
+    <mat-card-content>
+      <br><br><br><br>
+      <form (submit)="loginUser(login);" [formGroup]="controller" novalidate>
+        <mat-form-field>
+          <input matInput [(ngModel)]="login.email" name ="username" placeholder="Email" autocomplete="off" formControlName="username">
+          <mat-icon matSuffix>lock_outline</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput [(ngModel)]="login.password" name ="password" placeholder="Lozinka" autocomplete="off" type="password" formControlName="password" #lozinka>
+          <mat-icon (click)="lozinka.type='text'" class="pointer" (mouseleave)="lozinka.type='password'" matTooltip="Prikaži password" matSuffix>remove_red_eye</mat-icon>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="info" type="submit" [disabled]="!controller.valid">Prijava</button>
+        <br>
+        <br>
+        <mat-hint>Nemate korisnički račun? <a routerLink="/register">Registrirajte se</a></mat-hint>
+      </form>
+      <br>
+      <mat-hint *ngIf="this.dataService.showSuccessMessage" style="color:darkblue">Uspješna prijava!</mat-hint>
+      <mat-hint *ngIf="this.dataService.showInvalidUserMessage" style="color:sandybrown">Registrirani korisnik s email adresom <b>{{login.email}}</b> ne postoji!</mat-hint>
+      <mat-hint *ngIf="this.dataService.showErrorMessage" style="color:orangered">Neispravno zaporka!</mat-hint>
+      <br>
+    </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>Tečajna lista valuta:</mat-card-header>
+      <mat-card-content>
+        <mat-list >
+          <mat-list-item *ngFor="let curr of this.exchangeRate">
+            <h4>{{curr?.drzava}} ({{curr?.valuta}}) &nbsp; Omjer: {{curr?.jedinica}}:1 &nbsp;- &nbsp;{{curr?.srednji_tecaj | number: '1.2-2'}} HRK</h4>
+            <br>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,12 @@
+mat-card{
+  width:50%;
+  margin:0 auto;
+  text-align: center;
+}
+mat-form-field{
+  width:50%;
+}
+
+.pointer{
+  cursor:pointer;
+}

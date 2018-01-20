@@ -1,0 +1,66 @@
+<br>
+<div class="col-md-12">
+  <div class="col-md-6">
+<mat-card>
+  <mat-card-title>
+    Informacije o korisniku:
+  </mat-card-title>
+<form (submit)="updateUser();" [formGroup]="controller" novalidate>
+  <mat-form-field>
+    <input matInput [(ngModel)]="update.firstname" name ="name" placeholder="Ime" formControlName="firstname">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="update.lastname" name ="name" placeholder="Prezime" formControlName="lastname">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="update.oib" name ="name" maxlength="11" placeholder="OIB" formControlName="oib">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="update.birthdate" name="birthdate" [matDatepicker]="picker" placeholder="Datum rođenja:" formControlName="birthdate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="update.address" name ="name" placeholder="Adresa" formControlName="address">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="update.email" name ="email" placeholder="E-mail" type="email" formControlName="email">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <span matPrefix>+385 &nbsp;</span>
+    <input matInput [(ngModel)]="update.mobile" name ="name" placeholder="Mobitel" formControlName="mobile">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!controller.valid">Ažuriraj</button>
+  <br>
+  <br>
+  <mat-hint *ngIf="this.dataService.showSuccessMessage" style="color:forestgreen">Izmjene uspješne! Nakon ponovne prijave izmjene će biti vidljive.</mat-hint>
+  <mat-hint *ngIf="this.dataService.showErrorMessage" style="color:orangered">Pogreška pri ažuriranju podataka. Pokušajte kasnije!</mat-hint>
+  <br><br>
+</form>
+</mat-card>
+</div>
+  <div class="col-md-6">
+  <mat-card>
+    <h2>Računi:</h2>
+<mat-list>
+  <h3 mat-subheader>Računi</h3>
+  <mat-list-item *ngFor="let acc of this.accounts">
+    <mat-icon mat-list-icon>account_balance</mat-icon>
+    <h4 mat-line>{{acc?.vrsta}}</h4>
+    <p mat-line> {{acc?.brojRacuna}} </p>
+    <mat-icon style="cursor: pointer" (click)="this.removeAccount(acc.brojRacuna)" matTooltip="Ukloni račun">remove</mat-icon>
+  </mat-list-item>
+</mat-list>
+    <br>
+    <button mat-raised-button color="primary" (click)="this.addAccount()">Dodaj novi</button>
+  </mat-card>
+  </div>
+<br>
+</div>

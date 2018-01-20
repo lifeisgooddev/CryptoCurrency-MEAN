@@ -1,0 +1,15 @@
+mat-card{
+  width:75%;
+  text-align:center;
+  margin:1px auto;
+}
+
+.red{
+  color:red;
+}
+.green{
+  color:green;
+}
+.extendable{
+  cursor:pointer;
+}

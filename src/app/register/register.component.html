@@ -1,0 +1,62 @@
+<br><br><br>
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title style="margin-left:25px;">
+      Rezultati
+    </mat-card-title>
+    <mat-card-subtitle style="margin-left:25px;">
+      Registracija korisnika:
+    </mat-card-subtitle>
+    <br>
+  </mat-card-title-group>
+  <mat-card-content>
+    <br><br><br><br>
+    <form (submit)="registerUser();" [formGroup]="controller" novalidate>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.firstname" name ="name" placeholder="Ime" formControlName="firstname">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.lastname" name ="name" placeholder="Prezime" formControlName="lastname">
+      </mat-form-field>
+        <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.oib" name ="name" maxlength="11" placeholder="OIB" formControlName="oib">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.birthdate" name="birthdate" [matDatepicker]="picker" placeholder="Datum rođenja:" formControlName="birthdate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.address" name ="name" placeholder="Adresa" formControlName="address">
+      </mat-form-field>
+        <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.email" name ="email" placeholder="E-mail" type="email" formControlName="email">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <span matPrefix>+385 &nbsp;</span>
+        <input matInput [(ngModel)]="register.mobile" name ="name" placeholder="Mobitel" formControlName="mobile">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="register.password" name ="password" placeholder="Lozinka" type="password" formControlName="password">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="confirmPassword" name ="password" placeholder="Ponovite lozinku" type="password" formControlName="confirmPassword">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button (click)="back()"  type="button">Odustani</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!controller.valid">Registracija</button>
+    </form>
+    <br>
+    <mat-hint *ngIf="this.dataService.showSuccessMessage" style="color:forestgreen">Registracija uspješna!</mat-hint>
+    <mat-hint *ngIf="this.dataService.showErrorMessage" style="color:orangered">Pogreška pri registraciji. Pokušajte kasnije!</mat-hint>
+    <br>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Jeste li sigurni?</h1>
+<div mat-dialog-content>
+  <h4>Pritiskom na gumb <u>Ukloni</u> uklonit ćete račun.</h4>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">Ukloni</button>
+</div>

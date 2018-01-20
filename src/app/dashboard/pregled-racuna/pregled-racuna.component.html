@@ -1,0 +1,53 @@
+<br><br>
+<mat-card>
+
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="vrsta">
+        <mat-header-cell *matHeaderCellDef> Vrsta </mat-header-cell>
+        <mat-cell *matCellDef="let acc"> {{acc?.vrsta}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="brojRacuna">
+        <mat-header-cell *matHeaderCellDef> Broj računa </mat-header-cell>
+        <mat-cell *matCellDef="let acc"> {{acc?.brojRacuna}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="stanje">
+        <mat-header-cell *matHeaderCellDef> Stanje </mat-header-cell>
+        <mat-cell *matCellDef="let acc"> {{acc?.stanje}} {{acc?.valuta}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="pregledTransakcija">
+        <mat-header-cell *matHeaderCellDef> Transakcije </mat-header-cell>
+        <mat-cell *matCellDef="let acc" matTooltip="Pregled transakcija" class="extendable" (click)="this.openDialog(acc);"><mat-icon>list</mat-icon> </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  <!--<mat-accordion>
+  <mat-expansion-panel *ngFor="let acc of this.accounts" [disabled]="!acc?.aktivan">
+  <mat-expansion-panel-header (click)="this.getTransactionsForAccount(acc.brojRacuna)" >
+    <mat-panel-title>
+      {{acc?.vrsta}} {{acc?.brojRacuna}}
+    </mat-panel-title>
+    <mat-panel-description>
+      <span *ngIf="acc?.stanje > 0; then plus else minus"></span>
+      <ng-template #plus class="green">{{acc?.stanje}} {{acc?.valuta}}</ng-template>
+      <ng-template #minus class="red">{{acc?.stanje}} {{acc?.valuta}}</ng-template>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <mat-list>
+    Transakcije za  <b>{{acc?.vrsta}}</b> {{acc?.brojRacuna}}
+    <mat-list-item *ngFor="let trans of this.transactions">
+      {{trans?.vrsta}} {{trans?.datum | date}}
+      <hr>
+      <span><b>{{trans?.iznos}}</b> <i>{{trans?.valuta}}</i></span>
+    </mat-list-item>
+    <hr>
+  </mat-list>
+</mat-expansion-panel>
+  </mat-accordion>-->
+</mat-card>

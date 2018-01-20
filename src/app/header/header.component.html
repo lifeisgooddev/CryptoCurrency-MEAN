@@ -1,0 +1,5 @@
+<mat-toolbar>
+  <span><mat-icon style="font-size:35px;">public</mat-icon> &nbsp;CryptoFlow</span>
+  <span class="spacer"></span>
+  <button *ngIf="this.user.token != '' && this.router.url !== ''" (click)="this.logout()" mat-raised-button>Odjava</button>
+</mat-toolbar>

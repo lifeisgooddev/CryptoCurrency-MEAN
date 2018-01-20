@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Novi bankovni račun</h1>
+<div mat-dialog-content>
+  <form [formGroup]="controller">
+    <mat-form-field style="width:100%">
+      <mat-select placeholder="Vrsta računa" [(ngModel)]="data.vrsta" formControlName="vrsta">
+        <mat-option *ngFor="let type of this.types" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width:100%">
+      <input matInput [(ngModel)]="data.brojRacuna" placeholder="Broj računa" formControlName="brRacuna">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <mat-select placeholder="Valuta" [(ngModel)]="data.valuta" formControlName="valuta">
+        <mat-option *ngFor="let valuta of this.valute" [value]="valuta" >
+          {{ valuta }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Odustani</button>
+  <button mat-raised-button color="primary" [disabled]="!this.controller.valid" [mat-dialog-close]="data">Kreiraj</button>
+</div>

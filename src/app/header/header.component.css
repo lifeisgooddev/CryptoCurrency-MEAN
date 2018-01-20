@@ -1,0 +1,17 @@
+.icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar{
+  background-color:darkslateblue;
+  text-align: center;
+  height:50px;
+  font-size:18px;
+}
+span{
+  color:white;
+}

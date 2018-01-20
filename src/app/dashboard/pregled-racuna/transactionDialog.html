@@ -1,0 +1,21 @@
+<h1 mat-dialog-title style="text-align: center; margin:0 auto;">Pregled transakcija za račun br.: {{data.brojRacuna}}</h1>
+<div mat-dialog-content style="text-align: center; margin:0 auto;">
+  <br>
+  <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
+    <tr style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+      <th  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Vrsta</th>
+      <th  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Datum</th>
+      <th  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Broj autorizacije</th>
+      <th  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Iznos</th>
+    </tr>
+    <tr *ngFor="let t of data.trans" style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+      <td  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{t.vrsta}}</td>
+      <td  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{t.datum | date}}</td>
+      <td  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{t.brojAutorizacije}}</td>
+      <td  style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{t.iznos}} {{t.valuta}}</td>
+    </tr>
+  </table>
+</div>
+<div mat-dialog-actions style="text-align: center; margin:0 auto;">
+  <button mat-raised-button (click)="onNoClick()" style="text-align: center; margin:0 auto;">Izlaz</button>
+</div>
